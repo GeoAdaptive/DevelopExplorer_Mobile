@@ -1631,7 +1631,7 @@ section::after {
   }
   div.container{
   width: 100%;
-  height: 70%;
+  height: 100%;
   margin: auto;
   font-family: 'Roboto', sans-serif;
   font-weight: lighter;
@@ -1665,7 +1665,7 @@ section::after {
   }
 
   input[type=button]{
-  height: 65;
+  height: 8%;
   font-size: 1.5em;
   border-radius: 2%;
   }
