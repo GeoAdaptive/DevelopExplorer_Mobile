@@ -38,9 +38,9 @@ var tooltip = [];
 // });
 
 var map = L.map('map-mappage', {
-  center: [-23.414527, -56.506032],
-  zoom: 7,
-  minZoom: 6,
+  center: [-23.414527, -58.506032],
+  zoom: 5,
+  minZoom: 3,
   maxZoom: 14,
   zoomControl: false,
 });
