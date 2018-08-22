@@ -71,8 +71,8 @@ var pastclickStyle = {
 //   maxZoom: 9
 // });
 
-var map = L.map('map-selpage',{minZoom: 4, maxZoom: 6, zoomControl:false, attributionControl:false})
-map.setView([-16.008, -70.177], 4);
+var map = L.map('map-selpage',{minZoom: 2, maxZoom: 6, zoomControl:false, attributionControl:false})
+map.setView([-28.008, -70.177], 3);
 
     $(document).ready(function(){
       $.ajax(myGeoJSONPath).done(function(data) {
