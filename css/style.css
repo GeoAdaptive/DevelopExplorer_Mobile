@@ -1615,9 +1615,10 @@ section::after {
   font-weight: lighter;
   }
   div.main{
-  width: 25%;
+  width: 24%;
   position: relative;
-  right: 2%;
+  right: 10%;
+  align-self: center;
   padding: 15px 25px 10px;
   border: 2px solid gray;
   border-radius: 15px;
@@ -1640,6 +1641,12 @@ section::after {
   font-size: 1.5em;
   border-radius: 1%;
   }
+
+  input[type=button]{
+  font-size: 1.5em;
+  border-radius: 2%;
+  }
+
   label{
   color: #464646;
   text-shadow: 0 1px 0 #fff;
