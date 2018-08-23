@@ -575,13 +575,13 @@ var eachFeatureFunction = function(layer){
 
 
 var map1 = L.map('map-selpage1',{minZoom: 5, maxZoom: 7, zoomControl:false, attributionControl:false, disableScrollWheelZoom: true})
-map1.setView([-25.008071, -54.604688], 7);
+map1.setView([-25.008071, -54.604688], 5);
 
 var map2 = L.map('map-selpage2',{minZoom: 5, maxZoom: 7, zoomControl:false, attributionControl:false, disableScrollWheelZoom: true})
-map2.setView([18.922222, -71.838588], 6);
+map2.setView([18.922222, -71.838588], 3);
 
 var map3 = L.map('map-selpage3',{minZoom: 5, maxZoom: 7, zoomControl:false, attributionControl:false, disableScrollWheelZoom: true})
-map3.setView([14.945709, -92.471737], 6);
+map3.setView([14.945709, -92.471737], 3);
 
 
 //Alto Parana DATA

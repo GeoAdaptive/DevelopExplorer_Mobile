@@ -537,7 +537,7 @@ which is essentially crop off the excess part, create a div to hold the image */
 #map-selpage2{
   position:absolute;
   top:5.8%;
-  right:24%;
+  right:27%;
   width:23%;
   height:94.2%;
   z-index:-10;
@@ -546,7 +546,7 @@ which is essentially crop off the excess part, create a div to hold the image */
 #map-selpage1{
   position:absolute;
   top:5.8%;
-  right:48%;
+  right:54%;
   width:23%;
   z-index:-10;
   height:94.2%;
