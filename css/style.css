@@ -1137,11 +1137,10 @@ body {
 #rightcol-map{
   position:absolute;
   right:0;
-  width:18%;
+  width:36%;
   top:5.8%;
   height:95%;
   border-bottom-left-radius: 25px;
-  top:5%;
   font-family: 'Roboto', sans-serif;
   font-weight: lighter;
   background-color: #428bca;

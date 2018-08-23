@@ -1921,7 +1921,7 @@ $(document).ready(function(){
     console.log("parsed");
     var itemB = L.geoJson(parsedData_Roads1,
       {
-        style: {opacity:0.85,width:2,color:'#212F3D',fillOpacity:0.8},
+        style: {opacity:0.85,width:2,color:'#112F3D',fillOpacity:0.8},
         pointToLayer: function (feature, latlng) {
           return new L.Polygon(latlng, {
           });
@@ -4320,9 +4320,9 @@ $('#launchbutton-map').click(function(){
   _.each(Ports,function(layer){
         map.addLayer(layer);
   });
-  _.each(Airports,function(layer){
-        map.addLayer(layer);
-  });
+  // _.each(Airports,function(layer){
+  //       map.addLayer(layer);
+  // });
 
   // _.each(BasicSchools,function(layer){
   //       map.addLayer(layer);
@@ -4418,26 +4418,26 @@ $('#resetbutton-map').click(function(){
   //REMOVE THE CHECK SIGNS
   document.getElementById('r1b').style.display = 'none';
   document.getElementById('r1b').style.visibility = 'none';
-  document.getElementById('r2b').style.display = 'none';
-  document.getElementById('r2b').style.visibility = 'none';
-  document.getElementById('r3b').style.display = 'none';
-  document.getElementById('r3b').style.visibility = 'none';
+  // document.getElementById('r2b').style.display = 'none';
+  // document.getElementById('r2b').style.visibility = 'none';
+  // document.getElementById('r3b').style.display = 'none';
+  // document.getElementById('r3b').style.visibility = 'none';
   document.getElementById('r4b').style.display = 'none';
   document.getElementById('r4b').style.visibility = 'none';
-  document.getElementById('r5b').style.display = 'none';
-  document.getElementById('r5b').style.visibility = 'none';
-  document.getElementById('r6b').style.display = 'none';
-  document.getElementById('r6b').style.visibility = 'none';
+  // document.getElementById('r5b').style.display = 'none';
+  // document.getElementById('r5b').style.visibility = 'none';
+  // document.getElementById('r6b').style.display = 'none';
+  // document.getElementById('r6b').style.visibility = 'none';
   document.getElementById('r7b').style.visibility = 'none';
   document.getElementById('r7b').style.display = 'none';
-  document.getElementById('r8b').style.visibility = 'none';
-  document.getElementById('r8b').style.display = 'none';
+  // document.getElementById('r8b').style.visibility = 'none';
+  // document.getElementById('r8b').style.display = 'none';
   document.getElementById('r9b').style.visibility = 'none';
   document.getElementById('r9b').style.visibility = 'none';
-  document.getElementById('r10b').style.display = 'none';
-  document.getElementById('r10b').style.visibility = 'none';
-  document.getElementById('r11b').style.display = 'none';
-  document.getElementById('r11b').style.visibility = 'none';
+  // document.getElementById('r10b').style.display = 'none';
+  // document.getElementById('r10b').style.visibility = 'none';
+  // document.getElementById('r11b').style.display = 'none';
+  // document.getElementById('r11b').style.visibility = 'none';
 
 //REMOVE THE ADM BOUNDARY
 _.each(Country_boundary,function(layer){
@@ -4484,39 +4484,11 @@ _.each(hthGapOutcome,function(layer){
 //REMOVE THE LAYERS
   _.each(PrimaryRoads,function(layer){
     map.removeLayer(layer);
+    console.log("primary roads removed.");
   });
 
-  _.each(SecondaryRoads,function(layer){
-    map.removeLayer(layer);
-  });
-
-  _.each(TertiaryRoads,function(layer){
-    map.removeLayer(layer);
-  });
-
-  _.each(PavedRoads,function(layer){
-    map.removeLayer(layer);
-  });
-
-  _.each(GravelRoads,function(layer){
-    map.removeLayer(layer);
-  });
-
-  _.each(DirtRoads,function(layer){
-    map.removeLayer(layer);
-  });
-
-
-
-  _.each(Airports,function(layer){
-    map.removeLayer(layer);
-  });
 
   _.each(Ports,function(layer){
-    map.removeLayer(layer);
-  });
-
-  _.each(BasicSchools,function(layer){
     map.removeLayer(layer);
   });
 
@@ -4524,21 +4496,6 @@ _.each(hthGapOutcome,function(layer){
     map.removeLayer(layer);
   });
 
-  _.each(SupSchools,function(layer){
-    map.removeLayer(layer);
-  });
-
-  _.each(PrimaryHealthcare,function(layer){
-    map.removeLayer(layer);
-  });
-
-  _.each(SecondaryHealthcare,function(layer){
-    map.removeLayer(layer);
-  });
-
-  _.each(TertiaryHealthcare,function(layer){
-    map.removeLayer(layer);
-  });
 
   // _.each(SmallSchools,function(layer){
   //   map.removeLayer(layer);
