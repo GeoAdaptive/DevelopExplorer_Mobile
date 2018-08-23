@@ -38,7 +38,7 @@ var tooltip = [];
 
 var map = L.map('map-mappage', {
   center: [-25.008071, -54.604688],
-  zoom: 8.1,
+  zoom: 7,
   minZoom: 5,
   maxZoom: 14,
   zoomControl: false,
