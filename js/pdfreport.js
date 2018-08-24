@@ -80,7 +80,6 @@ var tableToPDF1 = function(){
 
   doc.setTextColor(0,0,0);
 
-
   //TABLE
   var columns = [
            // {title: "Subjects", dataKey: "sb"},
@@ -988,10 +987,6 @@ var tableToPDF6 = function(){
   doc.save('Development Condition Inventory.pdf');
   console.log("INTRODUCTORY PROFILE");
 };
-
-
-
-
 
 
 var tableToPDF_muni = function(){
