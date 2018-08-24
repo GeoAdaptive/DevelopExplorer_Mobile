@@ -627,13 +627,13 @@ body {
 .countryprofile{
   position:relative;
   display:inline;
-  top:2%;
+  top:4%;
   left:2%;
 }
 #nationalflag{
   position:relative;
   width:40%;
-  top:0;
+  top:20%;
   left:0;
 }
 
@@ -1663,6 +1663,13 @@ section::after {
   margin-top:20px;
   z-index:10;
   }
+
+  #welcomeimage_back{
+    /* width: 100%; */
+    height: 100%;
+  }
+
+
   input[type=text],input[type=password]{
   width: 70%;
   height: 5%;
