@@ -38,9 +38,9 @@ var tooltip = [];
 // });
 
 var map = L.map('map-mappage', {
-  center: [-23.414527, -58.506032],
-  zoom: 5,
-  minZoom: 3,
+  center: [-23.414527, -56.506032],
+  zoom: 7,
+  minZoom: 6,
   maxZoom: 14,
   zoomControl: false,
 });
@@ -256,7 +256,11 @@ var OP_muni = [];
 // var Paraguay_country_boundary = 'https://raw.githubusercontent.com/GeoAdaptive/DE_built_V1/master/data/Paraguay_m.geo.json?token=AgSQK75gXEHnQwkGLCGtT9NUluZ9Iw-Xks5aby5owA%3D%3D';
 var Paraguay_country_boundary = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/3e3b23b8c15806ba3e1f7cc9879b9b51bcf8a152/data/ADM_Paraguay_NationalBoundary.geojson';
 //DEPARTMENT BOUNDARY
-var Paraguay_dep_boundary = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/3e3b23b8c15806ba3e1f7cc9879b9b51bcf8a152/data/DEMO_Pop_Dep_Paraguay.geojson';
+var Paraguay_dep_boundary = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/master/data/new_demo_pop_dep_paraguay.geojson';
+
+// OLD LINK: https://raw.githubusercontent.com/GeoAdaptive/DE_V3/master/data/DEMO_Pop_Dep_Paraguay.geojson';
+// NEW LINK: https://raw.githubusercontent.com/GeoAdaptive/DE_V3/master/data/new_demo_pop_dep_paraguay.geojson
+
 //DISTRICT BOUNDARY
 var Paraguay_muni_boundary = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/3e3b23b8c15806ba3e1f7cc9879b9b51bcf8a152/data/DEMO_Pop_Dist_Paraguay.geojson';
 
@@ -303,7 +307,6 @@ var SecondaryRoadsUrl = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/3e3
 var PavedRoadsUrl = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/3e3b23b8c15806ba3e1f7cc9879b9b51bcf8a152/data/Roads_Condition_Asphalt_2.geojson';
 var GravelRoadsUrl = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/3e3b23b8c15806ba3e1f7cc9879b9b51bcf8a152/data/Roads_Condition_GravelandGravel_1.geojson';
 var DirtRoadsUrl = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/master/data/Roads_Condition_Dirt_4.geojson';
-
 
 //define the parsed layer files
 var parsedData_Airports;
@@ -489,9 +492,16 @@ var gapOutcomeStyle = {
 };
 
 
-// color scheme:
-// the white grey color: #D7DBDD
-// #F5B041
+
+//SET UP PDF VARIABLES
+var P_name = ' ';
+var P_area = ' ';
+var P_pop = ' ';
+var P_popdens = ' ';
+var P_description = '';
+// var P_id = ' ';
+// var P_year = ' ';
+// var P_source = ' ';
 
 //STYLE CONTROLLED BY PARAMETERS
 var myStyle_dep = function(feature){
@@ -766,8 +776,8 @@ $(document).ready(function(){
           "<br>" + "<table style='width:100%'>" +
           "<tr>" + "<td>Total area: </td>" + "<td>" + (feature.properties.shape_area / 1000000 ).toFixed(3) + "</td>"+ "</tr>" +
           // "<tr>" + "<td>Population (2002): </td>" + "<td>"+ feature.properties.Cen_2002.toFixed(0) + "</td>" + "</tr>" +
-          // "<tr>" + "<td>Population (2015): </td>" + "<td>"+ feature.properties.Pro_2015.toFixed(0) + "</td>" + "</tr>" +
-          // "<tr>" + "<td>Pop density: </td>" + "<td>"+ (feature.properties.Pro_2015 / feature.properties.Total_area).toFixed(3) + "per sq km</td>" + "</tr>" +
+          // "<tr>" + "<td>Population (2015): </td>" + "<td>"+ feature.properties.pro_2015.toFixed(0) + "</td>" + "</tr>" +
+          // "<tr>" + "<td>Pop density: </td>" + "<td>"+ (feature.properties.pro_2015 / feature.properties.total_area).toFixed(3) + "per sq km</td>" + "</tr>" +
           // "<tr>" + "<td>Population Change (2002 - 2015)</td>" + "<td>"+ feature.properties.Perce_chan.toFixed(3) + "</td>" + "</tr>" +
           // "<tr>" + "<td>Population Index</td>" + "<td>" + feature.properties.popdensity + "</td>" + "</tr>" +
           "</table></div>");
@@ -932,6 +942,12 @@ $(document).ready(function(){
         console.log("default country boundary generated.");
   })
 })
+
+var name;
+var area;
+var pop;
+var popdens;
+
 //DOWNLOAD AND PARSE THE DATA: DEPARTMENT LEVEL
 $(document).ready(function(){
   $.ajax(Paraguay_dep_boundary).done(function(data){
@@ -948,18 +964,19 @@ $(document).ready(function(){
         },
 
         onEachFeature: function(feature,layer){
-          // OPTION 0
+          // ASSIGN THE DEPARTMENT VALUES TO NEW VARIABLES
 
+          // OPTION 0
           label = ("<div id='text'>" +
           "<div id='name'> Department Name: " +
           "</div>" +
           "<b>" +
-          "<span id='category'>" + '<style>#category{color:#fff; font-weight:bold; background-color:#2E86C1; padding: 5px;}</style>' + feature.properties.Dept_name + "</b>" + "</span>" + "</div>" +
+          "<span id='category'>" + '<style>#category{color:#fff; font-weight:bold; background-color:#2E86C1; padding: 5px;}</style>' + feature.properties.dept_name + "</b>" + "</span>" + "</div>" +
           "<br>" + "<table style='width:100%'>" +
-          "<tr>" + "<td>Total area: </td>" + "<td>" + feature.properties.Total_area.toFixed(3) + "</td>"+ "</tr>" +
+          "<tr>" + "<td>Total area: </td>" + "<td>" + feature.properties.total_area.toFixed(3) + "</td>"+ "</tr>" +
           // "<tr>" + "<td>Population (2002): </td>" + "<td>"+ feature.properties.Cen_2002.toFixed(0) + "</td>" + "</tr>" +
-          "<tr>" + "<td>Population (2015): </td>" + "<td>"+ feature.properties.Pro_2015.toFixed(0) + "</td>" + "</tr>" +
-          "<tr>" + "<td>Pop density: </td>" + "<td>"+ (feature.properties.Pro_2015 / feature.properties.Total_area).toFixed(3) + "per sq km</td>" + "</tr>" +
+          "<tr>" + "<td>Population (2015): </td>" + "<td>"+ feature.properties.pro_2015.toFixed(0) + "</td>" + "</tr>" +
+          "<tr>" + "<td>Pop density: </td>" + "<td>"+ (feature.properties.pro_2015 / feature.properties.total_area).toFixed(3) + "per sq km</td>" + "</tr>" +
           // "<tr>" + "<td>Population Change (2002 - 2015)</td>" + "<td>"+ feature.properties.Perce_chan.toFixed(3) + "</td>" + "</tr>" +
           // "<tr>" + "<td>Population Index</td>" + "<td>" + feature.properties.popdensity + "</td>" + "</tr>" +
           "</table></div>");
@@ -976,7 +993,7 @@ $(document).ready(function(){
 
             // layer.bindTooltip(
             //   "<b>Name:</b> " +
-            //   feature.properties.Dept_name +
+            //   feature.properties.dept_name +
             //   "</br>" +
             //
             //   "<b>Area: </b> " +
@@ -995,25 +1012,25 @@ $(document).ready(function(){
 
           layer.bindPopup(
             "<b>Inventory Analysis for: </b><br>" +
-            "<h4><strong>" + feature.properties.NAM + "</strong></h4>" +
+            "<h4><strong>" + feature.properties.nam + "</strong></h4>" +
             "</br>" +
             // "<b>Department Name: </b>" +
             // feature.properties.NAM +
             // "</br>" +
             //
             // "<b>Total Area: </b>" +
-            // feature.properties.Total_area.toFixed(3) +
+            // feature.properties.total_area.toFixed(3) +
             // " square km</br>" +
             //
             // "<b>Total Population: </b>" +
-            // feature.properties.Pro_2015.toFixed(0) +
+            // feature.properties.pro_2015.toFixed(0) +
             // "</br>" +
             //
             // "<b>Population Density: </b>" +
             // feature.properties.popdensity.toFixed(3) +
             // " per square km</br>" +
 
-            "</br><button class='btn btn-light my-2 my-sm-0' style='font-size:12px;' onclick='tableToPDF1()'>Download Report</button>"
+            "</br><button class='btn btn-light my-2 my-sm-0' style='font-size:12px;' onclick='tableToPDF0()'>Download Report</button>"
             ,
 
             customOptions
@@ -1101,7 +1118,7 @@ $(document).ready(function(){
             // "</br>" +
             //
             // "<b>Total Area: </b>" +
-            // feature.properties.Total_Area.toFixed(3) +
+            // feature.properties.total_area.toFixed(3) +
             // " square km</br>" +
             //
             // "<b>Total Population: </b>" +
@@ -1697,11 +1714,11 @@ $(document).ready(function(){
             "</br>" +
 
             "<b>Total Area: </b>" +
-            feature.properties.Total_area.toFixed(3) +
+            feature.properties.total_area.toFixed(3) +
             " square km</br>" +
 
             "<b>Total Population: </b>" +
-            feature.properties.Pro_2015.toFixed(0) +
+            feature.properties.pro_2015.toFixed(0) +
             "</br>" +
 
             "<b>Population Density: </b>" +
@@ -2307,6 +2324,15 @@ var eachFeatureFunction = function(layer){
       console.log("highlighted passed");
       layer.setStyle(extrahighlightStyle);
 
+      //UPDATE THE PDF INFO TO BE DOWNLOADED
+      P_name = layer.feature.properties.dept_name;
+      P_area = layer.feature.properties.total_area.toFixed(3);
+      P_pop = layer.feature.properties.pro_2015.toFixed(0);
+      P_popdens = (layer.feature.properties.pro_2015 / layer.feature.properties.total_area).toFixed(0);
+      P_description = layer.feature.properties.description;
+      // P_id = layer.feature.properties.id;
+      // P_year = layer.feature.properties.year;
+      // P_source = layer.feature.properties.source;
     });
 
     // layer.on('click', function (event) {
@@ -2340,6 +2366,14 @@ var eachFeatureFunction = function(layer){
     //     map.removeLayer(layer);
     //   }
     // });
+
+
+
+
+
+
+
+
 
 };
 
