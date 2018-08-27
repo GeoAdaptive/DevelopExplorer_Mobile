@@ -627,13 +627,13 @@ body {
 .countryprofile{
   position:relative;
   display:inline;
-  top:4%;
+  top:8%;
   left:2%;
 }
 #nationalflag{
   position:relative;
   width:40%;
-  top:20%;
+  top:26%;
   left:0;
 }
 
