@@ -71,8 +71,8 @@ var pastclickStyle = {
 //   maxZoom: 9
 // });
 
-var map = L.map('map-selpage',{minZoom: 2, maxZoom: 6, zoomControl:false, attributionControl:false})
-map.setView([-28.008, -70.177], 3);
+var map = L.map('map-selpage',{minZoom: 4, maxZoom: 6, zoomControl:false, attributionControl:false})
+map.setView([-16.008, -70.177], 4);
 
     $(document).ready(function(){
       $.ajax(myGeoJSONPath).done(function(data) {
@@ -124,7 +124,32 @@ map.setView([-28.008, -70.177], 3);
                 $('#countrypop').text(feature.properties.pop_est);
                 $('#countryincome').text(feature.properties.income_grp.substr(3));
 
-                layer.setStyle(highlightStyle);
+                if(feature.properties.admin == "Paraguay"){
+                    layer.setStyle(highlightStyle);
+
+                    layer.on('click', function (event) {
+                      map.fitBounds(layer.getBounds(),{
+                                 padding: [80,80]
+                               });
+                      layer.setStyle(clickStyle);
+                      _.each(ParaguayNation,function(layer){
+                        map.addLayer(layer);
+                      });
+                      // _.each(layerMappedPolygons,function(layer){
+                        map.removeLayer(layerMappedPolygons);
+                      // });
+
+                      layer.on('mouseout', function(e){
+                        layer.setStyle(pastclickStyle);
+                      });
+                      // layer.bindPopup(
+                      //   "<b>Name: </b>" +
+                      //     feature.properties.admin +
+                      //     "</br>"
+                      // );
+                    });
+                };
+
                 //create a popup with a unique ID linked to it
                 var popup = $("<div></div>", {
                   id: "popup-" + feature.properties.admin,
@@ -154,28 +179,6 @@ map.setView([-28.008, -70.177], 3);
                 $("#popup-" + feature.properties.admin).remove();
                 console.log("popup removed.");
                 // this.closePopup();
-              });
-
-              layer.on('click', function (event) {
-                map.fitBounds(layer.getBounds(),{
-                           padding: [80,80]
-                         });
-                layer.setStyle(clickStyle);
-                _.each(ParaguayNation,function(layer){
-                  map.addLayer(layer);
-                });
-                // _.each(layerMappedPolygons,function(layer){
-                  map.removeLayer(layerMappedPolygons);
-                // });
-
-                layer.on('mouseout', function(e){
-                  layer.setStyle(pastclickStyle);
-                });
-                // layer.bindPopup(
-                //   "<b>Name: </b>" +
-                //     feature.properties.admin +
-                //     "</br>"
-                // );
               });
 
 
