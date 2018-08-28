@@ -2576,7 +2576,7 @@ $(document).ready(function(){
           layer.bindPopup(
             "<b>Name:</b> Name #" +
             feature.properties.dist_desc +
-            "</br>"
+            "</br>" +
 
             // "<b>Area: </b> " +
             // feature.properties.SQKM.toFixed(3) +
@@ -2590,7 +2590,7 @@ $(document).ready(function(){
             // (feature.properties.POP/feature.properties.SQKM).toFixed(3) +
             // " per square km</br>" +
 
-            // "</br><button class='btn btn-light my-2 my-sm-0' style='font-size:12px;' onclick='tableToPDF2()'>Download Report</button>"
+            "</br><button class='btn btn-light my-2 my-sm-0' style='font-size:12px;' onclick='tableToPDF_sevendist()'>Download Report</button>"
 
             ,
 
@@ -2599,11 +2599,11 @@ $(document).ready(function(){
           );
           }
         }).addTo(map);
-        defaultboundary.eachLayer(eachFeatureFunction);
+        defaultboundary.eachLayer(eachFeatureFunction_sevendist);
         Sevendist.push(defaultboundary);
         console.log("Ports generated.");
   })
-})
+});
 
 
 
@@ -3181,6 +3181,91 @@ $(document).ready(function(){
         console.log("gap outcome generated.");
   })
 })
+
+//
+var eachFeatureFunction_sevendist = function(layer){
+  layer.on('mouseover', function() { layer.setStyle(mouseoverstyle);});
+  layer.on('mouseout', function() { layer.setStyle(mouseoutstyle);});
+  //REFERENCE ON AZAVEA NEXTCITY PROJECT
+  // label = ("<div id='text'>" +
+  // "<div id='name'>" + layer.feature.properties.Neighborho + "</div>" +
+  // " is " + "<b>" + "<span id='category'>" + '<style>#category{background-color:' + layer.feature.properties.color + '; padding: 5px;}</style>' + layer.feature.properties.category + "</b>" + "</span>" + "</div>" +
+  //  "<br>" + "<table style='width:100%'>" + "<tr>" + "<td>Crime Index</td>" + "<td>"+layer.feature.properties.CrimeScore + "</td>" + "</tr>" +
+  //  "<tr>" + "<td>Median HH Income Index</td>" + "<td>" + layer.feature.properties.MHIScore + "</td>" + "</tr>" +
+  //  "<tr>" + "<td>Population Index</td>" + "<td>"+layer.feature.properties.PopScore + "</td>" + "</tr>" +
+  //  "<tr>" + "<td>Poverty Index</td>" + "<td>"+layer.feature.properties.PovScore + "</td>"+ "</tr>" +
+  //  "<tr>" + "<td>Home Price Index</td>" + "<td>"+layer.feature.properties.MHSScore + "</td>"+ "</tr>" + "</table>");
+
+    layer.on('click', function (event){
+      // console.log(layer.feature.properties.poverty);
+      map.fitBounds(layer.getBounds(),{
+               padding: [80,80]
+            });
+
+      _.each(transGapCoverage,function(layer){
+            layer.setStyle(gapCoverageStyle);
+      });
+      _.each(transGapOutcome,function(layer){
+            layer.setStyle(gapOutcomeStyle);
+      });
+      _.each(transGapQuality,function(layer){
+            layer.setStyle(gapQualityStyle);
+      });
+
+      _.each(Muni_boundary,function(layer){
+          layer.setStyle(myStyle_dist);
+      });
+
+      _.each(Department_boundary,function(layer){
+          layer.setStyle(myStyle_dist);
+      });
+
+      console.log("highlighted passed");
+      layer.setStyle(extrahighlightStyle);
+
+      //UPDATE THE PDF INFO TO BE DOWNLOADED
+      //for district level each features
+      D_name = layer.feature.properties.dist_desc;
+      // D_area = layer.feature.properties.Total_Area.toFixed(3);
+      // D_pop = layer.feature.properties.Wpop2015.toFixed(0);
+      // D_popdens = layer.feature.properties.popdensity.toFixed(2);
+      // D_description = layer.feature.properties.description;
+
+    });
+
+    // layer.on('click', function (event) {
+    //   map.fitBounds(layer.getBounds(),{
+    //              padding: [100,180]
+    //            });
+    //   layer.setStyle(clickStyle);
+    //   layer.on('mouseout', function(e){
+    //     layer.setStyle(pastclickStyle);
+    //   });
+    // });
+
+    //DEFINE THE USER QUERY INPUT!
+    // $('#search').click(function(){
+    //   povlow = $('#input1l').val();
+    //   povhigh = $('#input1h').val();
+    //   schllow = $('#input2l').val();
+    //   schlhigh = $('#input2h').val();
+    //   console.log("You selected the poverty range from "+ povlow +"% to " + povhigh +"%.");
+    //   console.log("You selected the school density range from "+ schllow +" schools to " + schlhigh +"schools per 10,000 people.");
+    //
+    //   var pov = layer.feature.properties.poverty;
+    //   console.log(layer.feature.properties.poverty);
+    //
+    //   var schld = layer.feature.properties.schl_perca;
+    //   console.log(layer.feature.properties.schl_perca);
+    //
+    //   if((pov >= povlow) && (pov <= povhigh) && (schld >= schllow) && (schld <= schlhigh)){
+    //     console.log(layer);
+    //   } else {
+    //     map.removeLayer(layer);
+    //   }
+    // });
+
+};
 
 
 //DEFINE THE EACH FUNCTION FOR INTERACTION WITH EACH LAYER FEATURE OBJECT
