@@ -503,6 +503,11 @@ var P_description = '';
 // var P_year = ' ';
 // var P_source = ' ';
 
+var D_name = '';
+var D_area = '';
+var D_pop = '';
+var D_popdens = '';
+
 //STYLE CONTROLLED BY PARAMETERS
 var myStyle_dep = function(feature){
   // switch(feature.properties.tipo_manag){
@@ -1148,7 +1153,7 @@ $(document).ready(function(){
           // });
         }
         });
-        itemB.eachLayer(eachFeatureFunction);
+        itemB.eachLayer(eachFeatureFunction_muni);
         //'<button class="btn btn-default dropdown-toggle" type="button" id="reportbutton" onclick="tableToPDF1()" data-toggle="dropdown" aria-haspopup="true">Download Report</button>';
 
         Muni_boundary.push(itemB);
@@ -2333,6 +2338,7 @@ var eachFeatureFunction = function(layer){
       // P_id = layer.feature.properties.id;
       // P_year = layer.feature.properties.year;
       // P_source = layer.feature.properties.source;
+
     });
 
     // layer.on('click', function (event) {
@@ -2367,15 +2373,97 @@ var eachFeatureFunction = function(layer){
     //   }
     // });
 
+};
 
 
+//EACH FEATURE FUNCTION FOR MUNICIPALITY
+var eachFeatureFunction_muni = function(layer){
+  layer.on('mouseover', function() { layer.setStyle(mouseoverstyle);});
+  layer.on('mouseout', function() { layer.setStyle(mouseoutstyle);});
+  //REFERENCE ON AZAVEA NEXTCITY PROJECT
+  // label = ("<div id='text'>" +
+  // "<div id='name'>" + layer.feature.properties.Neighborho + "</div>" +
+  // " is " + "<b>" + "<span id='category'>" + '<style>#category{background-color:' + layer.feature.properties.color + '; padding: 5px;}</style>' + layer.feature.properties.category + "</b>" + "</span>" + "</div>" +
+  //  "<br>" + "<table style='width:100%'>" + "<tr>" + "<td>Crime Index</td>" + "<td>"+layer.feature.properties.CrimeScore + "</td>" + "</tr>" +
+  //  "<tr>" + "<td>Median HH Income Index</td>" + "<td>" + layer.feature.properties.MHIScore + "</td>" + "</tr>" +
+  //  "<tr>" + "<td>Population Index</td>" + "<td>"+layer.feature.properties.PopScore + "</td>" + "</tr>" +
+  //  "<tr>" + "<td>Poverty Index</td>" + "<td>"+layer.feature.properties.PovScore + "</td>"+ "</tr>" +
+  //  "<tr>" + "<td>Home Price Index</td>" + "<td>"+layer.feature.properties.MHSScore + "</td>"+ "</tr>" + "</table>");
 
+    layer.on('click', function (event){
+      // console.log(layer.feature.properties.poverty);
+      map.fitBounds(layer.getBounds(),{
+               padding: [80,80]
+            });
 
+      _.each(transGapCoverage,function(layer){
+            layer.setStyle(gapCoverageStyle);
+      });
+      _.each(transGapOutcome,function(layer){
+            layer.setStyle(gapOutcomeStyle);
+      });
+      _.each(transGapQuality,function(layer){
+            layer.setStyle(gapQualityStyle);
+      });
 
+      _.each(Muni_boundary,function(layer){
+          layer.setStyle(myStyle_dist);
+      });
 
+      _.each(Department_boundary,function(layer){
+          layer.setStyle(myStyle_dist);
+      });
 
+      console.log("highlighted passed");
+      layer.setStyle(extrahighlightStyle);
+
+      //UPDATE THE PDF INFO TO BE DOWNLOADED
+      //for district level each features
+      D_name = layer.feature.properties.NAM;
+      D_area = layer.feature.properties.Total_Area.toFixed(3);
+      D_pop = layer.feature.properties.Wpop2015.toFixed(0);
+      D_popdens = layer.feature.properties.popdensity.toFixed(2);
+      // D_description = layer.feature.properties.description;
+
+    });
+
+    // layer.on('click', function (event) {
+    //   map.fitBounds(layer.getBounds(),{
+    //              padding: [100,180]
+    //            });
+    //   layer.setStyle(clickStyle);
+    //   layer.on('mouseout', function(e){
+    //     layer.setStyle(pastclickStyle);
+    //   });
+    // });
+
+    //DEFINE THE USER QUERY INPUT!
+    // $('#search').click(function(){
+    //   povlow = $('#input1l').val();
+    //   povhigh = $('#input1h').val();
+    //   schllow = $('#input2l').val();
+    //   schlhigh = $('#input2h').val();
+    //   console.log("You selected the poverty range from "+ povlow +"% to " + povhigh +"%.");
+    //   console.log("You selected the school density range from "+ schllow +" schools to " + schlhigh +"schools per 10,000 people.");
+    //
+    //   var pov = layer.feature.properties.poverty;
+    //   console.log(layer.feature.properties.poverty);
+    //
+    //   var schld = layer.feature.properties.schl_perca;
+    //   console.log(layer.feature.properties.schl_perca);
+    //
+    //   if((pov >= povlow) && (pov <= povhigh) && (schld >= schllow) && (schld <= schlhigh)){
+    //     console.log(layer);
+    //   } else {
+    //     map.removeLayer(layer);
+    //   }
+    // });
 
 };
+
+
+
+
 
 //DOWNLOAD AND PARSE THE DATA: HOSPITALS
 // $(document).ready(function(){
