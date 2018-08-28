@@ -53,15 +53,13 @@
       <p id = "slogantext">
           Territorial Intelligence for Socio-economic Development
       </p>
-
-
       <button android:layout_width="wrap_content"
       android:layout_height="fill_parent"
       android:text="Button 1"
       android:layout_weight="1"
       android:id="@+id/button"
       style="font-size:1em;"
-      class="btn btn-default dropdown-toggle" type="button" id="explorebutton" href="login.html" onclick="javascript:void window.open('login.html','_blank');return true;" data-toggle="dropdown" aria-haspopup="true">
+      class="btn btn-default dropdown-toggle" type="button" id="explorebutton" href="login.html" onclick="window.location.replace('login.html');return true;" data-toggle="dropdown" aria-haspopup="true">
         Start
       </button>
       <button android:layout_width="wrap_content"
@@ -70,7 +68,7 @@
       android:layout_weight="1"
       android:id="@+id/button"
        style="font-size:1em;"
-       class="btn btn-default dropdown-toggle" type="button" id="learnmorebutton" href="featurespage.html" onclick="javascript:void window.open('featurespage.html','_blank');return true;" data-toggle="dropdown" aria-haspopup="true">
+       class="btn btn-default dropdown-toggle" type="button" id="learnmorebutton" href="featurespage.html" onclick="window.location.replace('featurespage.html');return true;" data-toggle="dropdown" aria-haspopup="true">
         About
       </button>
       <img id = "logo" src = "https://preview.ibb.co/i2z8FQ/logo.png">
