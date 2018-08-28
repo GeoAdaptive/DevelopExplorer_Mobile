@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
@@ -72,11 +71,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href=href="http://geoadaptive.com/">About <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">Data</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="gallerypage.html">Gallery</a>
           </li>
@@ -85,10 +84,10 @@
               Account
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Signup</a>
-              <a class="dropdown-item" href="#">Log in</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Not George?</a>
+              <a class="dropdown-item" href="login.html" onclick="javascript:void window.open('login.html','_blank');return true;">Not You?</a>
+              <a class="dropdown-item" href="index.html" onclick="javascript:void window.open('index.html','_blank');return true;">Log out</a>
+              <!-- <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Not George?</a> -->
             </div>
           </li>
           <!-- <li class="nav-item">
@@ -144,40 +143,35 @@
     </div>
 
     <div class="middlecol">
-      <div id="introtext" style="font-size:1em;">
-        <p>GeoAdaptive's <b>DevelopExplorer</b> enables you to navigate through our development focused open source datasets and gain critical understanding of various development issues across Latin American countries in an easy and interactive way.</p>
-        <br>
+      <div id="introtext">
+        <p>GeoAdaptive's <b>DevelopExplorer</b> will present you the focal transboundary areas with development-related data, primarily in the borders between Haiti and Dominican Republic, Paraguay and Brazil and Northern Triangle.</p>
         <br>
       </div>
-      <div id="results" style="display: none;font-size:1em;">
+      <div id="results" style="display: none;">
         <label><b>Country Profile</b></label><br>
-        <p>Name: <span id="countryname">country name</span></p><br>
+        <p>Name: <span id="countryname">country name</span></p>
         <!-- <p>Area: <span id="countryarea">country area</span></p><br> -->
-        <p>Population: <span id="countrypop">country pop</span></p><br>
-        <p>GDP: <span id="countrygdp">country gdp</span></p><br>
+        <p>Population: <span id="countrypop">country pop</span></p>
+        <p>GDP: <span id="countrygdp">country gdp</span></p>
         <p>GDP per capita: <span id="countrygdpper">country gdp</span></p><br>
-        <!-- <p>Income Level: <span id="countryincome">country income</span></p><br> -->
-        <!-- <p>Gini Index: <span id="countrygini">country gini</span></p> -->
+
+        <p id="source" style="font-weight:lighter;font-style:italic;font-size:16px;"> data source: World Bank Group</p>
       </div>
-
     </div>
-
+    <br>
+    <br>
     <div id="buttons-sel" class="buttons">
-      <button style="font-size:1em;" class="btn btn-dark my-2 my-sm-0" type="button" id="launchbutton" href="mappingpage.html" onclick="window.location.replace('mappingpage.html');return true;" data-toggle="dropdown" aria-haspopup="true">
+      <button style="font-size:1em;" class="btn btn-dark my-2 my-sm-0" type="button" id="launchbutton" href="mappingpage_border.html" onclick="window.location.replace('mappingpage_border.html');return true;" data-toggle="dropdown" aria-haspopup="true">
         Launch
       </button>
-      <button style="font-size:1em;" class="btn btn-dark my-2 my-sm-0" type="button" id="resetbutton" href="featurespage.html" onclick="window.location.replace('featurespage.html');return true;" data-toggle="dropdown" aria-haspopup="true">
+      <button style="font-size:1em;" class="btn btn-dark my-2 my-sm-0" type="button" id="resetbutton" href="selectionpage1.html" onclick="window.location.replace('selectionpage1.html');return true;" data-toggle="dropdown" aria-haspopup="true">
         Reset
       </button>
     </div>
-
-
-
-    <div id="map-selpage"></div>
-
-
-
-    <script src="js/selectionpage.js"></script>
+    <div id="map-selpage1"></div>
+    <div id="map-selpage2"></div>
+    <div id="map-selpage3"></div>
+    <script src="js/selectionpage1.js"></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
 
