@@ -447,7 +447,7 @@ fetch(url_to_geotiff_file)
 // });
 
 //
-var SevenDistricturl = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/master/data/table_7district.geojson';
+var SevenDistricturl = 'https://raw.githubusercontent.com/GeoAdaptive/DE_V3/master/data/new_table_7district_1.geojson';
 var parsedData_sevendist;
 sevendist = [];
 
@@ -3226,9 +3226,9 @@ var eachFeatureFunction_sevendist = function(layer){
       //UPDATE THE PDF INFO TO BE DOWNLOADED
       //for district level each features
       D_name = layer.feature.properties.dist_desc;
-      // D_area = layer.feature.properties.Total_Area.toFixed(3);
-      // D_pop = layer.feature.properties.Wpop2015.toFixed(0);
-      // D_popdens = layer.feature.properties.popdensity.toFixed(2);
+      D_area = layer.feature.properties.area.toFixed(3);
+      D_pop = layer.feature.properties.population.toFixed(0);
+      D_popdens = (layer.feature.properties.population / layer.feature.properties.area).toFixed(2);
       // D_description = layer.feature.properties.description;
 
     });
